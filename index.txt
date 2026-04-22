@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>East Godavari Police - Auto Driver Details</title>
+  <style>
+   
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0;
+      padding: 20px; 
+      background-color: #dcdcdc; /* Professional light gray background */
+    }
+    .container { 
+      max-width: 800px; 
+      margin: auto; 
+      background: #fff; 
+      padding: 20px; 
+      border-radius: 12px; 
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15); 
+    }
+    .header { text-align:center; margin-bottom:20px; }
+    .header img { width:100px; }
+    .header h1 { margin:10px 0 0; color:#2c3e50; }
+    table { width:100%; border-collapse:collapse; margin-top:20px; }
+    th, td { border:1px solid #ccc; padding:20px; text-align:left; }
+    th { background:#356b7a; color:white; width:35%; }
+    .sos-button { display:block; width:100%; padding:12px; margin-top:20px;
+                  background:#e74c3c; color:white; font-size:18px; font-weight:bold;
+                  text-align:center; border-radius:6px; text-decoration:none; }
+    .sos-button:hover { background:#c0392b; }
+    .whatsapp-button { 
+      display: block; width: 100%; padding: 12px; margin-top: 20px;
+      background: #34c25c; color: white; font-size: 18px; font-weight: bold;
+      text-align: center; border-radius: 6px; text-decoration: none; 
+      transition: background 0.3s ease;
+    }
+    .whatsapp-button:hover { background: #236b38; }
+    .whatsapp-button img { 
+      vertical-align: middle; margin-right: 8px; 
+    }
+
+
+    /* Popup styling */
+    .popup {
+      position: fixed;
+      bottom: 20px;
+      center: 20px;
+      padding: 80px;
+      border-radius: 8px;
+      color: white;
+      font-size: 50px;
+      font-weight: bold;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .popup img {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Police Logo and Title -->
+    <div class="header">
+      <img src="AP.png" alt="East Godavari Police Logo" width=100 height=110 align="left">
+      <img src="EG.png" alt="East Godavari Police Logo" width=90 height=130 align="right">
+      <h1 style="color:#852460" align="center"><strong>Andhra Pradesh Police</strong></h1>
+      <h1 style="color:#35527a;" align="center">East Godavari District</h1>
+      <h2 style="color:#542485;" align="center"><I><u>SAFE AUTO</u></I></h2>
+      
+    </div>
+
+    <!-- Driver Details Table -->
+    <table>
+       <tr>
+        <th>Driver Photo</th>
+        <td><img src="driver.png" alt="Driver Photo" width="150" height="150" align="center"></td>
+      </tr>
+      <tr>
+        <th>Driver Service ID</th>
+        <td>1108</td>
+      </tr>
+      <tr>
+        <th>Name of Driver</th>
+        <td>Rajini Kanth</td>
+      </tr>
+      <tr>
+        <th>License Number</th>
+        <td>AP05-123456</td>
+      </tr>
+      <tr>
+        <th>Contact details</th>
+        <td>+91-9999999999</td>
+      </tr>
+      <tr>
+        <th>Antecedents</th>
+        <td>Cr No 59-2026</td>
+      </tr>
+     
+    </table>
+
+    <!-- SOS Contact Buttons -->
+    <a href="tel:112" class="sos-button">🚨 SOS - Call Emergency (112)</a>
+
+  <!-- WhatsApp Redirect Button -->
+    <a href="https://wa.me/919440796578?text=Assistance%20Required%20-%20Please%20select%20reason:%0A1.%20Road%20Accident%0A2.%20Harassment%0A3.%20Misbehaviour%0A4.%20Rash%20and%20Negligent%20Manner" 
+       target="_blank" class="whatsapp-button">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="25" height="25">
+       Contact Police Assistance
+    </a>
+
+    <!-- Marquee Section -->
+<marquee behavior="scroll" direction="left" scrollamount="5">
+  <h1 style="color:#308c78;" align="center">Your Safety Is Our Priority</h1>
+</marquee>
+
+  </div>
+  <!-- Video Section -->
+<video align="center" width="900" height="600" controls autoplay muted loop>
+  <source src="drivervedio.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+  <!-- Siren Audio --> 
+  <audio id="siren" src="siren.mp3" preload="auto"></audio>
+  
+  <!-- Popup Script -->
+  <script>
+    window.onload = function() {
+      // Example driver data (replace with API data if needed)
+      const driver = {
+        name: "Rajini Kanth",
+        background: "Cr No 59-2026" // Change to "Criminal Record" to test red alert
+      };
+
+      // Create popup
+      const popup = document.createElement("div");
+      popup.className = "popup";
+
+      const icon = document.createElement("img");
+
+      if (driver.background.toLowerCase() === "nil") {
+        popup.style.background = "green";
+        icon.src = "safe.png"; // Add a green check icon image
+        popup.innerHTML = "Authenticated Safe Ride";
+      } else {
+        popup.style.background = "red";
+        icon.src = "alert.png"; // Add a red alert icon image
+        popup.innerHTML = "Criminal Background Alert!";
+        
+        // Play siren sound
+        const siren = document.getElementById("siren");
+        document.body.addEventListener("click", () => {
+          siren.play();
+        }, { once: true });
+      }
+
+      popup.prepend(icon);
+      document.body.appendChild(popup);
+
+      // Auto-hide popup after 5 seconds
+      setTimeout(() => {
+        popup.remove();
+      }, 5000);
+    };
+  </script>
+</body>
+</html>
